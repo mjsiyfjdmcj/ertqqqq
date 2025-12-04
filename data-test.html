@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডেটা পার্সিস্টেন্স টেস্ট</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; }
+        button { padding: 10px 15px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; }
+        .success { background: #00b894; color: white; }
+        .danger { background: #e74c3c; color: white; }
+        .info { background: #3498db; color: white; }
+        #output { background: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 ডেটা পার্সিস্টেন্স টেস্ট</h1>
+        <p>এই পেজটি দিয়ে যাচাই করুন যে ডেটা সঠিকভাবে সংরক্ষিত হচ্ছে কিনা।</p>
+        
+        <div>
+            <button class="success" onclick="addTestData()">📝 টেস্ট ডেটা যোগ করুন</button>
+            <button class="info" onclick="showData()">📊 ডেটা দেখুন</button>
+            <button class="info" onclick="exportTestData()">📥 এক্সপোর্ট করুন</button>
+            <button class="danger" onclick="clearTestData()">🗑️ ডেটা মুছুন</button>
+        </div>
+        
+        <div id="output">
+            <p>টেস্ট শুরু করতে উপরের বাটনগুলো ব্যবহার করুন।</p>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="data-persistence.js"></script>
+    <script>
+        function addTestData() {
+            const testResult = {
+                name: 'টেস্ট ছাত্র ' + Math.floor(Math.random() * 100),
+                score: Math.floor(Math.random() * 31),
+                topic: 'bangladesh',
+                timestamp: new Date().toISOString()
+            };
+            
+            const saved = window.quizDataManager.saveResult(testResult);
+            if (saved) {
+                document.getElementById('output').innerHTML = 
+                    `<p style="color: green;">✅ সফলভাবে ডেটা সংরক্ষিত হয়েছে!</p>
+                     <pre>${JSON.stringify(saved, null, 2)}</pre>`;
+            } else {
+                document.getElementById('output').innerHTML = 
+                    '<p style="color: red;">❌ ডেটা সংরক্ষণে ত্রুটি!</p>';
+            }
+        }
+        
+        function showData() {
+            const results = window.quizDataManager.getResults();
+            const stats = window.quizDataManager.getStats();
+            
+            document.getElementById('output').innerHTML = 
+                `<h3>📊 পরিসংখ্যান:</h3>
+                 <p>মোট: ${stats.total} | পাস: ${stats.passed} | ফেল: ${stats.failed}</p>
+                 <h3>📋 সব ডেটা:</h3>
+                 <pre>${JSON.stringify(results, null, 2)}</pre>`;
+        }
+        
+        function exportTestData() {
+            window.quizDataManager.exportData();
+            document.getElementById('output').innerHTML = 
+                '<p style="color: blue;">📥 ডেটা ডাউনলোড শুরু হয়েছে!</p>';
+        }
+        
+        function clearTestData() {
+            if (confirm('সব টেস্ট ডেটা মুছে ফেলবেন?')) {
+                window.quizDataManager.clearAll();
+                document.getElementById('output').innerHTML = 
+                    '<p style="color: orange;">🗑️ সব ডেটা মুছে ফেলা হয়েছে!</p>';
+            }
+        }
+        
+        // Show initial data on load
+        window.addEventListener('load', showData);
+    </script>
+</body>
+</html>

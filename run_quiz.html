@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>ইন্টারঅ্যাক্টিভ কুইজ</title>
+    <style>
+        body { font-family: Arial; background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 20px; }
+        .quiz { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; max-width: 800px; margin: 0 auto; }
+        .question { background: rgba(255,255,255,0.2); padding: 20px; margin: 15px 0; border-radius: 10px; }
+        button { background: #ff6b6b; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #ff5252; }
+        .answer { background: rgba(0,255,0,0.3); padding: 10px; margin: 10px 0; border-radius: 5px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="quiz">
+        <h1>📚 ইন্টারঅ্যাক্টিভ কুইজ 📚</h1>
+        
+        <div class="question">
+            <p><strong>ক)</strong> মহাস্থানগড় ____ নদীর তীরে অবস্থিত।</p>
+            <button onclick="showAnswer(1)">উত্তর দেখুন</button>
+            <div id="ans1" class="answer">উত্তর: করতোয়া</div>
+        </div>
+
+        <div class="question">
+            <p><strong>খ)</strong> মীর জাফরের বিশ্বাসঘাতকতার কারণে নবাব ____ হন।</p>
+            <button onclick="showAnswer(2)">উত্তর দেখুন</button>
+            <div id="ans2" class="answer">উত্তর: পরাজিত</div>
+        </div>
+
+        <div class="question">
+            <p><strong>গ)</strong> প্রতিবছর ১৬ই ডিসেম্বর আমরা ____ পালন করি।</p>
+            <button onclick="showAnswer(3)">উত্তর দেখুন</button>
+            <div id="ans3" class="answer">উত্তর: বিজয় দিবস</div>
+        </div>
+
+        <div class="question">
+            <p><strong>ঘ)</strong> বাংলাদেশ একটি ____ দেশ।</p>
+            <button onclick="showAnswer(4)">উত্তর দেখুন</button>
+            <div id="ans4" class="answer">উত্তর: কৃষিপ্রধান</div>
+        </div>
+
+        <div class="question">
+            <p><strong>ঙ)</strong> সকলের জন্য বাসস্থান নিশ্চিত করা ____ জন্য অনেক কঠিন।</p>
+            <button onclick="showAnswer(5)">উত্তর দেখুন</button>
+            <div id="ans5" class="answer">উত্তর: সরকারের</div>
+        </div>
+
+        <h2>বাক্য শুদ্ধ-অশুদ্ধ:</h2>
+        
+        <div class="question">
+            <p><strong>ক)</strong> বাংলার শেষ স্বাধীন নবাব ছিলেন আলীবর্দী খান।</p>
+            <button onclick="showAnswer(6)">উত্তর দেখুন</button>
+            <div id="ans6" class="answer" style="background: rgba(255,0,0,0.3);">❌ অশুদ্ধ</div>
+        </div>
+
+        <div class="question">
+            <p><strong>খ)</strong> প্রতিবছর ২৬শে মার্চ আমরা বিজয় দিবস পালন করি।</p>
+            <button onclick="showAnswer(7)">উত্তর দেখুন</button>
+            <div id="ans7" class="answer" style="background: rgba(255,0,0,0.3);">❌ অশুদ্ধ</div>
+        </div>
+
+        <div class="question">
+            <p><strong>গ)</strong> মুক্তিযুদ্ধে সাধারণ জনগন, ছাত্র শিক্ষকসহ বিভিন্ন পেশার মানুষ অংশ নেয়।</p>
+            <button onclick="showAnswer(8)">উত্তর দেখুন</button>
+            <div id="ans8" class="answer">✅ শুদ্ধ</div>
+        </div>
+
+        <div class="question">
+            <p><strong>ঘ)</strong> বাংলাদেশের অর্থনীতি মূলত কৃষিনির্ভর।</p>
+            <button onclick="showAnswer(9)">উত্তর দেখুন</button>
+            <div id="ans9" class="answer">✅ শুদ্ধ</div>
+        </div>
+
+        <div class="question">
+            <p><strong>ঙ)</strong> সকল প্রকার পণ্যদ্রব্য দেশের বাইরে রপ্তানি করা উচিত।</p>
+            <button onclick="showAnswer(10)">উত্তর দেখুন</button>
+            <div id="ans10" class="answer">✅ শুদ্ধ</div>
+        </div>
+    </div>
+
+    <script>
+        function showAnswer(num) {
+            document.getElementById('ans' + num).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
